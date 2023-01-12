@@ -1,41 +1,29 @@
 
-# Python closure.
+# Python decorator.
 
-# Python closure is a nested function that allows us to access variables of the outer function even
-# after the outer function is closed.
+# In Python, a decorator is a design pattern that allows you to modify the functionality
+# of a function by wrapping it in another function.
+# The outer function is called the decorator, which takes the original function as an
+# argument and returns a modified version of it.
 
-# Syntax : def outer_fun(arg):
+#------Pass Function as Argument---------------------
+
+# Syntax : def fun1(arg):
 #                statements
 
-#                def inner_fun(arg):
-#                     statements
+#          def fun2(arg):
+#                 statements
 
-#          variable = outer_fun(arg)  # calling the outer function
+#          variable = fun2(fun1(arg))
 
-#          print(variable())         # calling the inner function
+#          print(variable)
 
-def calculate():
-    num = 1
-    def inner_func():
-        nonlocal num
-        num += 2
-        return num
-    return inner_func
+def add(x, y):
+    return x + y
 
-# call the outer function
-odd = calculate()
+def calculate(func, x, y):
+    return func(x, y)   # calling the add()
 
-# call the inner function
-print(odd())
-print(odd())
-print(odd())
+result = calculate(add, 4, 6) # calling the calculate(add()) passing the add() as argument
+print(result)     # O/P : 10
 
-# call the outer function again
-odd2 = calculate()
-print(odd2())
-
-# Output :
-# 3
-# 5
-# 7
-# 3
