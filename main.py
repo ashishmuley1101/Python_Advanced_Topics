@@ -1,30 +1,35 @@
 
-# Python decorator Return a Function as a Value
+# Python decorator function
 
-# In Python, a decorator is a design pattern that allows you to modify the functionality
-# of a function by wrapping it in another function.
-# The outer function is called the decorator, which takes the original function as an
-# argument and returns a modified version of it.
+# the decorators are used to modify the behaviour of function or class. In Decorators,
+# functions are taken as the argument into another function and then called inside the wrapper function.
 
-#------Return a Function as a Value---------------------
+#------The decorator function.--------------------
 
-# Syntax : def fun1(arg):
-#                statements
+def make_pretty(func):
+    # define the inner function
+    def inner():
+        # add some additional behavior to decorated function
+        print("I got decorated")
 
-#          def fun2(arg):
-#                 statement
-#          return fun2
+        # call original function
+        func()
 
-#          variable = fun1(arg)
+    # return the inner function
+    return inner
 
-#          print(variable())
 
-def greeting(name):
-    def hello():
-        return "Hello, " + name + "!"
-    return hello
+# define ordinary function
+def ordinary():
+    print("I am ordinary")
 
-greet = greeting("Bridgelabz")
-print(greet())
 
-# Output: Hello, Bridgelabz!
+# decorate the ordinary function
+decorated_func = make_pretty(ordinary)   # Syntax : decorated_func = calling_fun(arg_fun)
+
+# call the decorated function
+decorated_func()
+
+# Output:
+# I got decorated
+# I am ordinary
