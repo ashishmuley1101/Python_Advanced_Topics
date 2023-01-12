@@ -1,31 +1,29 @@
 
-# Python RegEx re.subn() method.
+# Python RegEx re.search() method.
 
 # A Regular Expression (RegEx) is a sequence of characters that defines a search pattern.
 # Python has a module named "re" to work with RegEx.
-# The re.subn() is similar to re.sub() except it returns a tuple of 2 items containing the new string and the number of substitutions made.
+# The re.search() method takes two arguments: a pattern and a string. The method looks for the first
+# location where the RegEx pattern produces a match with the string. If the search is successful,
+# re.search() returns a match object; if not, it returns None
+# Syntax : match = re.search(pattern, str)
 
-# Syntax : re.subn(pattern, replace, string)
-
-#------Python RegEx re.subn()--------------------
+#------Python RegEx re.search()--------------------
 
 
 import re    # importing the re module
 
-# multiline string
-string = 'abc 12\
-de 23 \n f45 6'
+string = "Welcome to BridgeLabz !"
 
-# matches all whitespace characters
-pattern = '\s+'
+# check if 'Welcome' is at the beginning or start with
+match = re.search('\AWelcome', string)
 
-# empty string
-replace = ''
+if match:
+  print("pattern found inside the string")
+else:
+  print("pattern not found")
 
-new_string = re.subn(pattern, replace, string)
-print(new_string)
-
-# Output: ('abc12de23f456', 4)
+# Output: pattern found inside the string
 
 
 
