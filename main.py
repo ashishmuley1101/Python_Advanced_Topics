@@ -1,31 +1,38 @@
 
-# Python Decorating Functions with Parameters.
+# Python Chaining Decorators .
 
-# Instead of assigning the function call to a variable, Python provides a much more
-# elegant way to achieve this functionality using the @ symbol.
+# Multiple decorators can be chained in Python.
+# To chain decorators in Python, we can apply multiple decorators to a single function
+# by placing them one after the other, with the most inner decorator being applied first.
 
-#------Decorating Functions with Parameters--------------------
+#------Python Chaining Decorators--------------------
 
-def smart_divide(func):
-    def inner(a, b):
-        print("I am going to divide", a, "and", b)
-        if b == 0:
-            print("Whoops! cannot divide by 0")
-            return
-
-        return func(a, b)
+def star(func):
+    def inner(*args, **kwargs):
+        print("*" * 30)
+        func(*args, **kwargs)
+        print("*" * 30)
     return inner
 
-@smart_divide
-def divide(a, b):
-    print(a/b)
 
-divide(2, 5)
+def percent(func):
+    def inner(*args, **kwargs):
+        print("%" * 30)
+        func(*args, **kwargs)
+        print("%" * 30)
+    return inner
 
-divide(2, 0)
+
+@star
+@percent
+def printer(msg):
+    print(msg)
+
+printer("\tHello Bridgelabz...!")
 
 # Output:
-# I am going to divide 2 and 5
-# 0.4
-# I am going to divide 2 and 0
-# Whoops! cannot divide by 0
+# ******************************
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# 	Hello Bridgelabz...!
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# ******************************
