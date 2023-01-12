@@ -1,10 +1,10 @@
 
-# Python decorator function
+# Python @ Symbol With Decorator Function.
 
-# the decorators are used to modify the behaviour of function or class. In Decorators,
-# functions are taken as the argument into another function and then called inside the wrapper function.
+# Instead of assigning the function call to a variable, Python provides a much more
+# elegant way to achieve this functionality using the @ symbol.
 
-#------The decorator function.--------------------
+#------@ Symbol With Decorator Function.--------------------
 
 def make_pretty(func):
     # define the inner function
@@ -20,15 +20,12 @@ def make_pretty(func):
 
 
 # define ordinary function
+# decorate the ordinary function
+@make_pretty  # Calling the make_pretty using @ symbol and passing ordinary() as argument.
 def ordinary():
     print("I am ordinary")
 
-
-# decorate the ordinary function
-decorated_func = make_pretty(ordinary)   # Syntax : decorated_func = calling_fun(arg_fun)
-
-# call the decorated function
-decorated_func()
+ordinary()
 
 # Output:
 # I got decorated
