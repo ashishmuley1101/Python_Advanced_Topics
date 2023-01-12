@@ -1,32 +1,31 @@
 
-# Python @ Symbol With Decorator Function.
+# Python Decorating Functions with Parameters.
 
 # Instead of assigning the function call to a variable, Python provides a much more
 # elegant way to achieve this functionality using the @ symbol.
 
-#------@ Symbol With Decorator Function.--------------------
+#------Decorating Functions with Parameters--------------------
 
-def make_pretty(func):
-    # define the inner function
-    def inner():
-        # add some additional behavior to decorated function
-        print("I got decorated")
+def smart_divide(func):
+    def inner(a, b):
+        print("I am going to divide", a, "and", b)
+        if b == 0:
+            print("Whoops! cannot divide by 0")
+            return
 
-        # call original function
-        func()
-
-    # return the inner function
+        return func(a, b)
     return inner
 
+@smart_divide
+def divide(a, b):
+    print(a/b)
 
-# define ordinary function
-# decorate the ordinary function
-@make_pretty  # Calling the make_pretty using @ symbol and passing ordinary() as argument.
-def ordinary():
-    print("I am ordinary")
+divide(2, 5)
 
-ordinary()
+divide(2, 0)
 
 # Output:
-# I got decorated
-# I am ordinary
+# I am going to divide 2 and 5
+# 0.4
+# I am going to divide 2 and 0
+# Whoops! cannot divide by 0
