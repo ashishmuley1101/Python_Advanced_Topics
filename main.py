@@ -1,35 +1,20 @@
 
-# Python Property Deleter
+# Python RegEx re.match()
 
-# A deleter in Python is a method that is used to delete a class attribute.
-# It is defined using the @<property_name>.deleter decorator,
-# <property_name> - name of the class attribute to delete.
+# A Regular Expression (RegEx) is a sequence of characters that defines a search pattern.
+# Python has a module named "re" to work with RegEx.
 
-#------Python Property Deleter--------------------
+#------Python RegEx re.match()--------------------
 
 
-class Person:
-    def __init__(self, name, age):
-        self._name = name
-        self._age = age
+import re    # importing the re module
 
-    # define a "name" getter
-    @property
-    def name(self):
-        return self._name
+pattern = '^a...s$'
+test_string = 'abyss'
+result = re.match(pattern, test_string)
 
-    # define a "name" deleter
-    @name.deleter   # Deleting the name attribute.
-    def name(self):
-        del self._name
-
-# create a new Person object
-person = Person("Bridgelabz", 30)
-
-# access, set, and delete the "name" attribute
-# using the getter, setter, and deleter
-print(person.name)  # O/P : "Bridgelabz"
-
-del person.name
-print(person.name)  # Error -----> AttributeError: 'Person' object has no attribute '_name'
+if result:   # if pattern match to test_string return true or flase
+  print("Search successful.")
+else:
+  print("Search unsuccessful.")
 
