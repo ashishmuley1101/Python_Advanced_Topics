@@ -1,29 +1,31 @@
 
-# Python RegEx re.search() method.
+# Python RegEx match.group() method.
 
 # A Regular Expression (RegEx) is a sequence of characters that defines a search pattern.
 # Python has a module named "re" to work with RegEx.
-# The re.search() method takes two arguments: a pattern and a string. The method looks for the first
-# location where the RegEx pattern produces a match with the string. If the search is successful,
-# re.search() returns a match object; if not, it returns None
+# The group() method returns the part of the string where there is a match.
 # Syntax : match = re.search(pattern, str)
+#          print(match.group())
 
-#------Python RegEx re.search()--------------------
+#------Python RegEx match.group()--------------------
 
 
 import re    # importing the re module
 
-string = "Welcome to BridgeLabz !"
+string = '2102 1111,123 45'
 
-# check if 'Welcome' is at the beginning or start with
-match = re.search('\AWelcome', string)
+# Three digit number followed by space followed by two digit number
+pattern = '(\d{3}) (\d{2})'
+
+# match variable contains a Match object.
+match = re.search(pattern, string)
 
 if match:
-  print("pattern found inside the string")
+  print(match.group())    # return the matching group
 else:
   print("pattern not found")
 
-# Output: pattern found inside the string
+# Output: 102 11
 
 
 
