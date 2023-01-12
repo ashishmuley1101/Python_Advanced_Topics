@@ -1,43 +1,41 @@
 
-# Python Generators.
+# Python closure.
 
-# A generator is a function that returns an iterator that produces a sequence of values when iterated over.
-# Generators are useful when we want to produce a large sequence of values, but we don't want to store all of them in memory at once.
-# In Python, similar to defining a normal function, we can define a generator function using the
-# def keyword, but instead of the return statement we use the yield statement.
+# Python closure is a nested function that allows us to access variables of the outer function even
+# after the outer function is closed.
 
-# Syntax : def generator_name(arg):
-#                   statements
-#                   yield something --> the yield keyword is used to produce a value from the generator.
+# Syntax : def outer_fun(arg):
+#                statements
 
-def my_generator(n):
+#                def inner_fun(arg):
+#                     statements
 
-    # initialize counter
-    value = 0
+#          variable = outer_fun(arg)  # calling the outer function
 
-    # loop until counter is less than n
-    while value < n:
+#          print(variable())         # calling the inner function
 
-        # produce the current value of the counter
-        yield value
+def calculate():
+    num = 1
+    def inner_func():
+        nonlocal num
+        num += 2
+        return num
+    return inner_func
 
-        # increment the counter
-        value += 1
+# call the outer function
+odd = calculate()
 
-# iterate over the generator object produced by my_generator using next() method
-generator = my_generator(3)
-print(next(generator))  # O/P: 0
-print(next(generator))  # O/P: 1
-print(next(generator))  # O/P: 2
+# call the inner function
+print(odd())
+print(odd())
+print(odd())
 
-
-# iterate over the generator object produced by my_generator
-for value in my_generator(3):
-
-    # print each value produced by generator
-    print(value)
+# call the outer function again
+odd2 = calculate()
+print(odd2())
 
 # Output :
-# 0
-# 1
-# 2
+# 3
+# 5
+# 7
+# 3
