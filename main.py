@@ -1,5 +1,5 @@
 
-# Python decorator(Pass Function as Argument).
+# Python decorator
 
 # In Python, a decorator is a design pattern that allows you to modify the functionality
 # of a function by wrapping it in another function.
