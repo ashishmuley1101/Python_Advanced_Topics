@@ -1,38 +1,30 @@
 
-# Python Chaining Decorators .
+# Python Property Getter.
 
-# Multiple decorators can be chained in Python.
-# To chain decorators in Python, we can apply multiple decorators to a single function
-# by placing them one after the other, with the most inner decorator being applied first.
+# In Python, a getter is a method that is used to retrieve the value of an attribute.
+# It is defined using the @property decorator, which allows the method to be accessed like an attribute.
+# the @property decorator is a built-in function that allows us to define methods that can be accessed like an attribute.
 
-#------Python Chaining Decorators--------------------
+#------Python Property Getter--------------------
 
-def star(func):
-    def inner(*args, **kwargs):
-        print("*" * 30)
-        func(*args, **kwargs)
-        print("*" * 30)
-    return inner
+class Student:
+    def __init__(self, first_name):
+        self.first_name = first_name
 
+    # define getter method
+    @property    #  @property decorator to access get_name() like an attribute.
+    def get_name(self):
+        return self.first_name
 
-def percent(func):
-    def inner(*args, **kwargs):
-        print("%" * 30)
-        func(*args, **kwargs)
-        print("%" * 30)
-    return inner
+# create a new Student object
+student = Student("Bridgelabz")
 
+# access the first name using data property
+print("Student first_name : ", student.first_name)
 
-@star
-@percent
-def printer(msg):
-    print(msg)
+# access the first name using getter property
+print("Student first_name : ", student.get_name)
 
-printer("\tHello Bridgelabz...!")
-
-# Output:
-# ******************************
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# 	Hello Bridgelabz...!
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# ******************************
+# Output :
+# Student first_name :  Bridgelabz
+# Student first_name :  Bridgelabz
