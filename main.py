@@ -1,59 +1,43 @@
 
-# Building Custom Iterators.
+# Python Generators.
 
-# Building an iterator from scratch is easy in Python. We just have to implement the __iter__() and the __next__() methods,
-# __iter__() returns the iterator object itself. If required, some initialization can be performed.
-# __next__() must return the next item in the sequence. On reaching the end, and in subsequent calls, it must raise StopIteration.
+# A generator is a function that returns an iterator that produces a sequence of values when iterated over.
+# Generators are useful when we want to produce a large sequence of values, but we don't want to store all of them in memory at once.
+# In Python, similar to defining a normal function, we can define a generator function using the
+# def keyword, but instead of the return statement we use the yield statement.
+
+# Syntax : def generator_name(arg):
+#                   statements
+#                   yield something --> the yield keyword is used to produce a value from the generator.
+
+def my_generator(n):
+
+    # initialize counter
+    value = 0
+
+    # loop until counter is less than n
+    while value < n:
+
+        # produce the current value of the counter
+        yield value
+
+        # increment the counter
+        value += 1
+
+# iterate over the generator object produced by my_generator using next() method
+generator = my_generator(3)
+print(next(generator))  # O/P: 0
+print(next(generator))  # O/P: 1
+print(next(generator))  # O/P: 2
 
 
-class PowTwo:
-    """Class to implement an iterator
-    of powers of two"""
+# iterate over the generator object produced by my_generator
+for value in my_generator(3):
 
-    def __init__(self, max=0):
-        self.max = max
-
-    def __iter__(self):
-        self.n = 0
-        return self
-
-    def __next__(self):
-        if self.n <= self.max:
-            result = 2 ** self.n
-            self.n += 1
-            return result
-        else:
-            raise StopIteration
-
-
-# create an object
-numbers = PowTwo(3)
-
-# create an iterable from the object
-i = iter(numbers)
-
-# Using next to get to the next iterator element
-print(next(i)) #  O/P : 1
-print(next(i)) #  O/P : 2
-print(next(i)) #  O/P : 4
-print(next(i)) #  O/P : 8
-print(next(i)) # raises StopIteration exception
-
-#-----------------Using for Loop--------------------------
-
-# A more elegant way of automatically iterating is by using the for loop.
-
-# create an object
-numbers = PowTwo(3)
-
-# create an iterable from the object
-i = iter(numbers)
-
-for i in PowTwo(3):
-    print(i)
+    # print each value produced by generator
+    print(value)
 
 # Output :
+# 0
 # 1
 # 2
-# 4
-# 8
