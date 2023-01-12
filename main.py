@@ -1,37 +1,24 @@
 
-# Python RegEx match.start(), match.end() and match.span() method.
+# Python  r prefix before RegEx.
 
 # A Regular Expression (RegEx) is a sequence of characters that defines a search pattern.
 # Python has a module named "re" to work with RegEx.
+# When r or R prefix is used before a regular expression, it means raw string. For example, '\n' is a new
+# line whereas r'\n' means two characters: a backslash \ followed by n.
 
 
 
-#------Python RegEx match.start(), match.end() and match.span()--------------------
+#------Python  r prefix before RegEx--------------------
 
 
 import re    # importing the re module
 
-string = '2102 1111,123 45'
+string = '\n and \r are escape sequences.'
 
-# Three digit number followed by space followed by two digit number
-pattern = '(\d{3}) (\d{2})'
+result = re.findall(r'[\n\r]', string) # escaping the \n and \r using r prefix
+print(result)
 
-# match variable contains a Match object.
-match = re.search(pattern, string)
-
-if match:
-  print(match.group())    # return the matching group
-  print(match.start())  # return the starting index
-  print(match.end())  # return the end index
-  print(match.span())  # return the span() function returns a tuple containing start and end index of the matched part.
-else:
-  print("pattern not found")
-
-# Output:
-# 102 11
-# 1
-# 7
-# (1, 7)
+# Output: ['\n', '\r']
 
 
 
