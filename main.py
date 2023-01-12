@@ -1,11 +1,11 @@
 
-# Python Property Setter
+# Python Property Deleter
 
-# In Python, a setter is a method that is used to set the value of an attribute.
-# It is defined using the @<property_name>.setter decorator,
-# <property_name> name of the property that the setter is for.
+# A deleter in Python is a method that is used to delete a class attribute.
+# It is defined using the @<property_name>.deleter decorator,
+# <property_name> - name of the class attribute to delete.
 
-#------Python Property Setter--------------------
+#------Python Property Deleter--------------------
 
 
 class Person:
@@ -13,24 +13,23 @@ class Person:
         self._name = name
         self._age = age
 
-    # Define a "name" getter
+    # define a "name" getter
     @property
-    def name(self):    # getting the name variable
+    def name(self):
         return self._name
 
-    # Define a "name"  as setter
-    @name.setter       # setting the name variable with value
-    def name(self, value):
-        self._name = value
+    # define a "name" deleter
+    @name.deleter   # Deleting the name attribute.
+    def name(self):
+        del self._name
 
-# Create a new Person object
-person = Person("Jack", 30)
+# create a new Person object
+person = Person("Bridgelabz", 30)
 
-# Access and set the "name" attribute using the getter and setter
-print("Old name :", person.name)           # calling the getter method
-person.name = "Bridgelabz"   # calling the setter method passing the value
-print("New name :", person.name)           # calling the getter method
+# access, set, and delete the "name" attribute
+# using the getter, setter, and deleter
+print(person.name)  # O/P : "Bridgelabz"
 
-# Output :
-# Old name : Jack
-# New name : Bridgelabz
+del person.name
+print(person.name)  # Error -----> AttributeError: 'Person' object has no attribute '_name'
+
